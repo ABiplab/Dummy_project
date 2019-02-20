@@ -1,0 +1,37 @@
+{
+  "engines": {
+    "composer": "^0.20.7"
+  },
+  "name": "book-network",
+  "version": "0.0.27",
+  "description": "A network of books for Students",
+  "scripts": {
+    "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/book-network.bna",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js",
+    "bna": "composer archive create --sourceType dir --sourceName . -a ./dist/book-network.bna"
+  },
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "Biplab",
+  "email": "biplabswain9@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "^0.20.7",
+    "composer-cli": "^0.20.7",
+    "composer-client": "^0.20.7",
+    "composer-common": "^0.20.7",
+    "composer-connector-embedded": "^0.20.7",
+    "composer-cucumber-steps": "^0.20.7",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}

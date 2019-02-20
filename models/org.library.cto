@@ -1,0 +1,62 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Write your model definitions here
+ */
+
+namespace org.library
+
+participant Reader identified by readerId {
+  o String readerId
+  o String name
+  o Long balance
+}
+participant Librarian identified by librarianId {
+  o String librarianId
+  o String name
+}
+enum BookStatus {
+  o AVAILABLE
+  o BORROWED
+  o LOST
+}
+asset Book identified by bookId {
+  o String bookId
+  o String title
+  o BookStatus status
+  o Long originalPrice
+
+  --> Reader borrower optional
+  o DateTime borrowedTime optional
+}
+abstract transaction BookTransaction {
+-->Book book
+}
+transaction Borrow extends BookTransaction {
+--> Reader reader
+}
+transaction Return extends BookTransaction {
+
+}
+transaction Lost extends BookTransaction {
+
+}
+transaction Payment {
+  --> Reader reader
+  o Long amount
+}
+transaction SetupDemo {
+ 
+}
